@@ -1,0 +1,111 @@
+tempo=20
+//設定
+objsize ginfo_winx/3,ginfo_winy/5
+objmode 2
+font "",40
+temp=""
+//音声ファイルの読み込み
+repeat 10
+	mmload "sound\\DTMF-"+cnt+".mp3",cnt
+	wait 1
+loop
+	mmload "sound\\DTMF-star.mp3",10
+	mmload "sound\\DTMF-pound.mp3",11
+goto *main
+
+//譜面自動演奏
+*auto
+dialog "",16,""
+if stat=0:dialog "ファイル選択がキャンセルされたかエラーが発生しました。\n通常モードに入ります":goto *main
+exist refstr
+if strsize=-1:dialog ""
+notesel score
+noteload refstr
+repeat
+play=strmid(score,cnt,1)
+if play="0":gosub *b0
+if play="1":gosub *b1
+if play="2":gosub *b2
+if play="3":gosub *b3
+if play="4":gosub *b4
+if play="5":gosub *b5
+if play="6":gosub *b6
+if play="7":gosub *b7
+if play="8":gosub *b8
+if play="9":gosub *b9
+if play="*":gosub *bstar
+if play="#":gosub *bpound
+if play=" ":wait tempo
+wait tempo
+loop
+
+*main
+//ボタンの描画
+	pos 0,0:button "自動演奏",*auto
+	pos 0,ginfo_winy/5:button gosub "1",*b1
+	pos ginfo_winx/3,ginfo_winy/5:button gosub "2",*b2
+	pos ginfo_winx/3*2,ginfo_winy/5:button gosub "3",*b3
+	pos 0,ginfo_winy/5*2:button gosub "4",*b4
+	pos ginfo_winx/3,ginfo_winy/5*2:button gosub "5",*b5
+	pos ginfo_winx/3*2,ginfo_winy/5*2:button gosub "6",*b6
+	pos 0,ginfo_winy/5*3:button gosub "7",*b7
+	pos ginfo_winx/3,ginfo_winy/5*3:button gosub "8",*b8
+	pos ginfo_winx/3*2,ginfo_winy/5*3:button gosub "9",*b9
+	pos 0,ginfo_winy/5*4:button gosub "*",*bstar
+	pos ginfo_winx/3,ginfo_winy/5*4:button gosub "0",*b0
+	pos ginfo_winx/3*2,ginfo_winy/5*4:button gosub "#",*bpound
+	repeat
+		objsize ginfo_winx/3*2,ginfo_winy/5
+		pos ginfo_winx/3,0:input temp
+			wait 100
+		clrobj 13
+	loop
+*b1
+	temp=temp+"1"
+	mmplay 1
+	return
+*b2
+	temp=temp+"2"
+	mmplay 2
+	return
+*b3
+	temp=temp+"3"
+	mmplay 3
+	return
+*b4
+	temp=temp+"4"
+	mmplay 4
+	return
+*b5
+	temp=temp+"5"
+	mmplay 5
+	return
+*b6
+	temp=temp+"6"
+	mmplay 6
+	return
+*b7
+	temp=temp+"7"
+	mmplay 7
+	return
+*b8
+	temp=temp+"8"
+	mmplay 8
+	return
+*b9
+	temp=temp+"9"
+	mmplay 9
+	return
+*bstar
+	temp=temp+"*"
+	mmplay 10
+	return
+*b0
+	temp=temp+"0"
+	mmplay 0
+	return
+*bpound
+	temp=temp+"#"
+	mmplay 11
+	return
+stop
