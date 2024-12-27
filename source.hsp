@@ -1,10 +1,10 @@
 tempo=20
-//İ’è
+//è¨­å®š
 objsize ginfo_winx/3,ginfo_winy/5
 objmode 2
 font "",40
 temp=""
-//‰¹ºƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+//éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 repeat 10
 	mmload "sound\\DTMF-"+cnt+".mp3",cnt
 	wait 1
@@ -13,10 +13,10 @@ loop
 	mmload "sound\\DTMF-pound.mp3",11
 goto *main
 
-//•ˆ–Ê©“®‰‰‘t
+//è­œé¢è‡ªå‹•æ¼”å¥
 *auto
 dialog "",16,""
-if stat=0:dialog "ƒtƒ@ƒCƒ‹‘I‘ğ‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚©ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n’Êíƒ‚[ƒh‚É“ü‚è‚Ü‚·":goto *main
+if stat=0:dialog "ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‹ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\né€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã‚Šã¾ã™":goto *main
 exist refstr
 if strsize=-1:dialog ""
 notesel score
@@ -40,8 +40,8 @@ wait tempo
 loop
 
 *main
-//ƒ{ƒ^ƒ“‚Ì•`‰æ
-	pos 0,0:button "©“®‰‰‘t",*auto
+//ãƒœã‚¿ãƒ³ã®æç”»
+	pos 0,0:button "è‡ªå‹•æ¼”å¥",*auto
 	pos 0,ginfo_winy/5:button gosub "1",*b1
 	pos ginfo_winx/3,ginfo_winy/5:button gosub "2",*b2
 	pos ginfo_winx/3*2,ginfo_winy/5:button gosub "3",*b3
